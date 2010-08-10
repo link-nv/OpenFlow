@@ -18,7 +18,7 @@
 
 - (void)imageDidLoad:(NSArray *)arguments;
 
-@property(nonatomic, retain)IBOutlet AFOpenFlowView *openFlowView;
+@property(nonatomic, retain) IBOutlet AFOpenFlowView *openFlowView;
 
 @end
 
