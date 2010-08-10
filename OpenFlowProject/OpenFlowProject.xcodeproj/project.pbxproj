@@ -15,6 +15,7 @@
 		2899E5220DE3E06400AC0155 /* OpenFlowProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* OpenFlowProjectViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* OpenFlowProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* OpenFlowProjectViewController.m */; };
+		5C27EDD61211FA1A003271FF /* SBNotifyingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C27EDD41211FA1A003271FF /* SBNotifyingWindow.m */; };
 		AB1C193210F462F50060F12D /* AFGetImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1C193110F462F50060F12D /* AFGetImageOperation.m */; };
 		AB1C193B10F4630A0060F12D /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1C193510F4630A0060F12D /* AFItemView.m */; };
 		AB1C193C10F4630A0060F12D /* AFOpenFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1C193810F4630A0060F12D /* AFOpenFlowView.m */; };
@@ -66,6 +67,8 @@
 		28D7ACF70DDB3853001CB0EB /* OpenFlowProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenFlowProjectViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* OpenFlowProject_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenFlowProject_Prefix.pch; sourceTree = "<group>"; };
+		5C27EDD41211FA1A003271FF /* SBNotifyingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBNotifyingWindow.m; sourceTree = "<group>"; };
+		5C27EDD51211FA1A003271FF /* SBNotifyingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBNotifyingWindow.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OpenFlowProject-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OpenFlowProject-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		AB1C193010F462F50060F12D /* AFGetImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFGetImageOperation.h; sourceTree = "<group>"; };
 		AB1C193110F462F50060F12D /* AFGetImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFGetImageOperation.m; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 		AB1C193310F4630A0060F12D /* OpenFlow */ = {
 			isa = PBXGroup;
 			children = (
+				5C27EDD41211FA1A003271FF /* SBNotifyingWindow.m */,
+				5C27EDD51211FA1A003271FF /* SBNotifyingWindow.h */,
 				AB1C193410F4630A0060F12D /* AFItemView.h */,
 				AB1C193510F4630A0060F12D /* AFItemView.m */,
 				AB1C193610F4630A0060F12D /* AFOpenFlowConstants.h */,
@@ -335,6 +340,7 @@
 				AB1C193B10F4630A0060F12D /* AFItemView.m in Sources */,
 				AB1C193C10F4630A0060F12D /* AFOpenFlowView.m in Sources */,
 				AB1C193D10F4630A0060F12D /* AFUIImageReflection.m in Sources */,
+				5C27EDD61211FA1A003271FF /* SBNotifyingWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +358,7 @@
 				GCC_PREFIX_HEADER = OpenFlowProject_Prefix.pch;
 				INFOPLIST_FILE = "OpenFlowProject-Info.plist";
 				PRODUCT_NAME = OpenFlowProject;
+				SDKROOT = iphonesimulator4.0;
 			};
 			name = Debug;
 		};
