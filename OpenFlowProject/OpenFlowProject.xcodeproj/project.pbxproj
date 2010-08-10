@@ -79,7 +79,7 @@
 		AB1C193810F4630A0060F12D /* AFOpenFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFOpenFlowView.m; path = ../OpenFlow/AFOpenFlowView.m; sourceTree = SOURCE_ROOT; };
 		AB1C193910F4630A0060F12D /* AFUIImageReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFUIImageReflection.h; path = ../OpenFlow/AFUIImageReflection.h; sourceTree = SOURCE_ROOT; };
 		AB1C193A10F4630A0060F12D /* AFUIImageReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFUIImageReflection.m; path = ../OpenFlow/AFUIImageReflection.m; sourceTree = SOURCE_ROOT; };
-		AB1C195410F463A40060F12D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AB1C195410F463A40060F12D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = iphoneos3.1.2/System/Library/Frameworks/QuartzCore.framework; sourceTree = "<group>"; };
 		AB1C199410F464D10060F12D /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = ../OpenFlowDemo/default.png; sourceTree = SOURCE_ROOT; };
 		AB1C199510F464D10060F12D /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 0.jpg; path = "../OpenFlowDemo/Sample Images/0.jpg"; sourceTree = SOURCE_ROOT; };
 		AB1C199610F464D10060F12D /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = "../OpenFlowDemo/Sample Images/1.jpg"; sourceTree = SOURCE_ROOT; };
@@ -158,7 +158,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				AB1C195410F463A40060F12D /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -186,6 +185,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB1C195410F463A40060F12D /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,

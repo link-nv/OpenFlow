@@ -85,6 +85,7 @@ const static CGFloat kReflectionFraction = 0.85;
     self.userInteractionEnabled = YES;
     self.showsVerticalScrollIndicator = NO;
     self.showsHorizontalScrollIndicator = NO;
+    self.bounces = NO;
     
     //  UIScrollViewDecelerationRateNormal = 0.998
     //  UIScrollViewDecelerationRateFast = 0.990
