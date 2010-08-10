@@ -356,6 +356,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OpenFlowProject_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenFlowProject-Info.plist";
 				PRODUCT_NAME = OpenFlowProject;
 				SDKROOT = iphonesimulator4.0;
