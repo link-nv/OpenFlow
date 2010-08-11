@@ -36,3 +36,8 @@
 #endif
 
 #define SIDE_COVER_ANGLE .79
+
+#define CAPTION_WIDTH 200
+#define CAPTION_HEIGHT 50
+#define CAPTION_FONTSIZE 20
+#define CAPTION_OFFSET 10

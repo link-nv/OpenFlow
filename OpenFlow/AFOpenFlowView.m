@@ -100,14 +100,14 @@ const static CGFloat kReflectionFraction = 0.85;
     
     // Initialize Cover Caption
     selectedCoverCaption = [[UITextView alloc] init];
-    selectedCoverCaption.text = @"Hello";
     selectedCoverCaption.textColor = [UIColor whiteColor];
     selectedCoverCaption.textAlignment = UITextAlignmentCenter;
-    selectedCoverCaption.frame = CGRectMake(0, 0, 100, 100);
+    selectedCoverCaption.frame = CGRectMake(0, 0, CAPTION_WIDTH, CAPTION_HEIGHT);
     selectedCoverCaption.backgroundColor = nil;
     selectedCoverCaption.userInteractionEnabled = NO;
+    selectedCoverCaption.font = [UIFont systemFontOfSize:CAPTION_FONTSIZE];
+    
     [self addSubview:selectedCoverCaption];
-    // TODO: restrict touches to nonText area
     
 }
 
@@ -150,7 +150,6 @@ const static CGFloat kReflectionFraction = 0.85;
 	CGPoint newPosition;
 	
 	newPosition.x = halfScreenWidth + aCover.horizontalPosition;
-    // TODO: change based on proportion?
 	newPosition.y = halfScreenHeight + aCover.verticalPosition - 20;
 	if (coverNumber < selectedIndex) {
 		newPosition.x -= CENTER_COVER_OFFSET;
@@ -259,18 +258,23 @@ const static CGFloat kReflectionFraction = 0.85;
             [self setSelectedCover:targetCover];
     }
     
-    // TODO: constant (50 = .5 * width of text box)
-    CGFloat horizOrigin = contentOffset.x + halfScreenWidth - 50;
-    CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.width + 10;
-    selectedCoverCaption.frame = CGRectMake(horizOrigin, vertOrigin, 100, 100);
+    CGFloat horizOrigin = contentOffset.x + halfScreenWidth - CAPTION_WIDTH / 2;
+    CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.width + CAPTION_OFFSET;
+    selectedCoverCaption.frame = CGRectMake(horizOrigin, vertOrigin, CAPTION_WIDTH, CAPTION_HEIGHT);
     selectedCoverCaption.text = [NSString stringWithFormat:@"%@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
     // put it on top
     [self addSubview:selectedCoverCaption];
     
 }
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    // no scrolling below where the caption is
+    return point.y < selectedCoverView.frame.origin.y + selectedCoverView.frame.size.width;
+}
+
 #pragma mark UIScrollViewDelegate
-//
+
 //- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;                              
 //// called on start of dragging (may require some time and or distance to move)
 //{
