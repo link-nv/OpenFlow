@@ -68,6 +68,7 @@ const static CGFloat kReflectionFraction = 0.85;
 	// Create data holders for onscreen & offscreen covers & UIImage objects.
 	coverImages = [[NSMutableDictionary alloc] init];
 	coverImageHeights = [[NSMutableDictionary alloc] init];
+    coverImageCaptions = [[NSMutableDictionary alloc] init];
 	offscreenCovers = [[NSMutableSet alloc] init];
 	onscreenCovers = [[NSMutableDictionary alloc] init];
     
@@ -96,6 +97,18 @@ const static CGFloat kReflectionFraction = 0.85;
 	CATransform3D sublayerTransform = CATransform3DIdentity;
 	sublayerTransform.m34 = -0.01;
 	[self.layer setSublayerTransform:sublayerTransform];
+    
+    // Initialize Cover Caption
+    selectedCoverCaption = [[UITextView alloc] init];
+    selectedCoverCaption.text = @"Hello";
+    selectedCoverCaption.textColor = [UIColor whiteColor];
+    selectedCoverCaption.textAlignment = UITextAlignmentCenter;
+    selectedCoverCaption.frame = CGRectMake(0, 0, 100, 100);
+    selectedCoverCaption.backgroundColor = nil;
+    selectedCoverCaption.userInteractionEnabled = NO;
+    [self addSubview:selectedCoverCaption];
+    // TODO: restrict touches to nonText area
+    
 }
 
 - (AFItemView *)coverForIndex:(int)coverIndex {
@@ -137,7 +150,8 @@ const static CGFloat kReflectionFraction = 0.85;
 	CGPoint newPosition;
 	
 	newPosition.x = halfScreenWidth + aCover.horizontalPosition;
-	newPosition.y = halfScreenHeight + aCover.verticalPosition;
+    // TODO: change based on proportion?
+	newPosition.y = halfScreenHeight + aCover.verticalPosition - 20;
 	if (coverNumber < selectedIndex) {
 		newPosition.x -= CENTER_COVER_OFFSET;
 		newTransform = leftTransform;
@@ -213,6 +227,7 @@ const static CGFloat kReflectionFraction = 0.85;
 	
 	[coverImages release];
 	[coverImageHeights release];
+    [coverImageCaptions release];
 	[offscreenCovers removeAllObjects];
 	[offscreenCovers release];
 	
@@ -243,6 +258,15 @@ const static CGFloat kReflectionFraction = 0.85;
         else
             [self setSelectedCover:targetCover];
     }
+    
+    // TODO: constant (50 = .5 * width of text box)
+    CGFloat horizOrigin = contentOffset.x + halfScreenWidth - 50;
+    CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.width + 10;
+    selectedCoverCaption.frame = CGRectMake(horizOrigin, vertOrigin, 100, 100);
+    selectedCoverCaption.text = [NSString stringWithFormat:@"%@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
+    // put it on top
+    [self addSubview:selectedCoverCaption];
+    
 }
 
 #pragma mark UIScrollViewDelegate
@@ -367,6 +391,7 @@ const static CGFloat kReflectionFraction = 0.85;
 	NSNumber *coverNumber = [NSNumber numberWithInt:index];
 	[coverImages setObject:imageWithReflection forKey:coverNumber];
 	[coverImageHeights setObject:[NSNumber numberWithFloat:image.size.height] forKey:coverNumber];
+    [coverImageCaptions setObject:coverNumber forKey:coverNumber];
 	
 	// If this cover is onscreen, set its image and call layoutCover.
 	AFItemView *aCover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:index]];

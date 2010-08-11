@@ -38,6 +38,7 @@
 	NSMutableDictionary				*onscreenCovers;
 	NSMutableDictionary				*coverImages;
 	NSMutableDictionary				*coverImageHeights;
+    NSMutableDictionary             *coverImageCaptions;
 	UIImage							*defaultImage;
 	CGFloat							defaultImageHeight;
 
@@ -47,6 +48,7 @@
 	int								beginningCover;
 	
 	AFItemView						*selectedCoverView;
+    UITextView                      *selectedCoverCaption;
 
 	CATransform3D leftTransform, rightTransform;
 	
