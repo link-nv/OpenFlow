@@ -44,7 +44,13 @@
 - (void)main {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     // Load an image named photoIndex.jpg from our Resources.
-    NSString *imageName = [[NSString alloc] initWithFormat:@"%d.jpg", photoIndex];
+	NSString *imageName = [[NSString alloc] initWithFormat:@"%d.jpg", photoIndex];
+
+	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+		imageName = [[NSString alloc] initWithFormat:@"%d.png", photoIndex];
+
+	}
     UIImage *theImage = [UIImage imageNamed:imageName];
     if (theImage) {
         [mainViewController performSelectorOnMainThread:@selector(imageDidLoad:) 

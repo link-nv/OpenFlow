@@ -23,8 +23,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 #import "AFItemView.h"
+#import "AFOpenFlowGeometry.h"
 #import <QuartzCore/QuartzCore.h>
-#import "AFOpenFlowConstants.h"
 
 @implementation AFItemView
 @synthesize number, imageView, horizontalPosition, verticalPosition;
@@ -53,7 +53,7 @@
 }
 
 - (void)setNumber:(int)newNumber {
-	horizontalPosition = COVER_SPACING * newNumber;
+	horizontalPosition = [AFOpenFlowGeometry coverSpacing] * newNumber;
 	number = newNumber;
 }
 
