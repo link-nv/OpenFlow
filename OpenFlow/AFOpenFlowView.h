@@ -24,6 +24,7 @@
  */
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "AFOpenFlowConstants.h"
 
 #import "AFItemView.h"
 
