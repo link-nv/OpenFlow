@@ -81,7 +81,7 @@
     CGRect imgRect = CGRectMake(0, self.size.height, self.size.width, reflectionHeight);
 
     //black background to occlude covers behind this one
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
     CGContextFillRect(context, imgRect);
 	CGContextDrawImage(context, imgRect, reflectionImage);
 	

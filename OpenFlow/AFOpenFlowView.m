@@ -61,7 +61,7 @@ const static CGFloat kReflectionFraction = 0.85;
     
     [[self appWindow] addObjectInterestedInTouches:self];
     
-    [self setBackgroundColor:[UIColor blackColor]];
+    [self setBackgroundColor:[UIColor clearColor]];
     // Set up the default image for the coverflow.
 	self.defaultImage = [self.dataSource defaultImage];
 	
