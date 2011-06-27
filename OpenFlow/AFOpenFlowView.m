@@ -262,7 +262,7 @@ const static CGFloat kReflectionFraction = 0.85;
     CGFloat horizOrigin = contentOffset.x + halfScreenWidth - CAPTION_WIDTH / 2;
     CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.height / 2.0 + CAPTION_OFFSET;
     selectedCoverCaption.frame = CGRectMake(horizOrigin, vertOrigin, CAPTION_WIDTH, CAPTION_HEIGHT);
-    selectedCoverCaption.text = [NSString stringWithFormat:@"%@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
+    selectedCoverCaption.text = [NSString stringWithFormat:@"Card Title %@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
     // put it on top
     [self addSubview:selectedCoverCaption];
     
@@ -421,6 +421,11 @@ const static CGFloat kReflectionFraction = 0.85;
         CGPoint targetPoint = [[touches anyObject] locationInView:[self appWindow]];
 		CALayer *targetLayer = (CALayer *)[self.layer hitTest:targetPoint];
 		AFItemView *targetCover = [self findCoverOnscreen:targetLayer];
+        
+        if ([self.viewDelegate respondsToSelector:@selector(openFlowView:didTapItemView:)]) {
+            [self.viewDelegate openFlowView:self didTapItemView:targetCover];
+        }
+        
 		if (targetCover && (targetCover.number != selectedCoverView.number))
         {
             CGPoint selectedOffset = CGPointMake([AFOpenFlowGeometry coverSpacing] * targetCover.number, 0);

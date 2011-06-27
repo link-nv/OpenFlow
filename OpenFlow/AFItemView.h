@@ -36,6 +36,7 @@
 @property (nonatomic) int number;
 @property (nonatomic, readonly) CGFloat horizontalPosition;
 @property (nonatomic, readonly) CGFloat verticalPosition;
+@property (nonatomic, readonly) CGFloat originalImageHeight;
 @property (nonatomic, readonly) UIImageView *imageView;
 
 - (void)setImage:(UIImage *)newImage originalImageHeight:(CGFloat)imageHeight reflectionFraction:(CGFloat)reflectionFraction;

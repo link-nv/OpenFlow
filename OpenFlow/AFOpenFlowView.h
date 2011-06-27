@@ -76,6 +76,7 @@
 @protocol AFOpenFlowViewDelegate <NSObject>
 @optional
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
+- (void)openFlowView:(AFOpenFlowView *)openFlowView didTapItemView:(AFItemView *)itemView;
 @end
 
 @protocol AFOpenFlowViewDataSource <NSObject>

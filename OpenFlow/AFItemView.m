@@ -27,7 +27,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation AFItemView
-@synthesize number, imageView, horizontalPosition, verticalPosition;
+@synthesize number, imageView, horizontalPosition, originalImageHeight, verticalPosition;
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
