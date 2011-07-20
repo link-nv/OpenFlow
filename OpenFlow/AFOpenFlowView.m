@@ -239,6 +239,7 @@ const static CGFloat kReflectionFraction = 0.85;
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     //    NSLog(@"[%@ %s]", self, _cmd);
     halfScreenWidth = self.bounds.size.width / 2;
     halfScreenHeight = self.bounds.size.height / 2;
@@ -275,7 +276,6 @@ const static CGFloat kReflectionFraction = 0.85;
 }
 
 #pragma mark UIScrollViewDelegate
-
 //- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;                              
 //// called on start of dragging (may require some time and or distance to move)
 //{
