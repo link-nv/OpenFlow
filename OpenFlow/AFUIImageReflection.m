@@ -88,7 +88,7 @@
 	UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
     CGImageRelease(reflectionImage);
-	
+	    
 	return result;
 }
 

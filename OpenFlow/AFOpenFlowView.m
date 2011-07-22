@@ -91,7 +91,7 @@ const static CGFloat kReflectionFraction = 0.85;
     
     //  UIScrollViewDecelerationRateNormal = 0.998
     //  UIScrollViewDecelerationRateFast = 0.990
-    self.decelerationRate = .992;
+    self.decelerationRate = .98;
     [super setDelegate:self];
     
 	// Set some perspective
@@ -150,9 +150,11 @@ const static CGFloat kReflectionFraction = 0.85;
 	CGFloat newZPosition = [AFOpenFlowGeometry sideCoverZPosition];
 	CGPoint newPosition;
 	
+    
 	newPosition.x = halfScreenWidth + aCover.horizontalPosition;
-	newPosition.y = halfScreenHeight + aCover.verticalPosition - 20;
-	if (coverNumber < selectedIndex) {
+    //Bottom of the cover should always in the same place
+	newPosition.y = 265;
+    if (coverNumber < selectedIndex) {
 		newPosition.x -= [AFOpenFlowGeometry centerCoverOffset];
 		newTransform = leftTransform;
 	} else if (coverNumber > selectedIndex) {
@@ -205,7 +207,7 @@ const static CGFloat kReflectionFraction = 0.85;
 
 
 @implementation AFOpenFlowView
-@synthesize dataSource, viewDelegate, numberOfImages, defaultImage;
+@synthesize dataSource, viewDelegate, numberOfImages, defaultImage, selectedCoverCaption;
 
 #define COVER_BUFFER 6
 
@@ -259,14 +261,13 @@ const static CGFloat kReflectionFraction = 0.85;
         else
             [self setSelectedCover:targetCover];
     }
-    
+        
     CGFloat horizOrigin = contentOffset.x + halfScreenWidth - CAPTION_WIDTH / 2;
-    CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.height / 2.0 + CAPTION_OFFSET;
+    CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.height / 2.0 + CAPTION_OFFSET+10;
     selectedCoverCaption.frame = CGRectMake(horizOrigin, vertOrigin, CAPTION_WIDTH, CAPTION_HEIGHT);
-    selectedCoverCaption.text = [NSString stringWithFormat:@"Card Title %@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
+    selectedCoverCaption.text = [NSString stringWithFormat:@"%@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
     // put it on top
     [self addSubview:selectedCoverCaption];
-    
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
@@ -397,6 +398,22 @@ const static CGFloat kReflectionFraction = 0.85;
 	[coverImages setObject:imageWithReflection forKey:coverNumber];
 	[coverImageHeights setObject:[NSNumber numberWithFloat:image.size.height] forKey:coverNumber];
     [coverImageCaptions setObject:coverNumber forKey:coverNumber];
+	
+	// If this cover is onscreen, set its image and call layoutCover.
+	AFItemView *aCover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:index]];
+	if (aCover) {
+		[aCover setImage:imageWithReflection originalImageHeight:image.size.height reflectionFraction:kReflectionFraction];
+		[self layoutCover:aCover selectedCover:selectedCoverView.number animated:NO];
+	}
+}
+
+- (void)setImage:(UIImage *)image forIndex:(int)index captionTitle:(NSString*)captionTitle {
+	// Create a reflection for this image.
+	UIImage *imageWithReflection = [image addImageReflection:kReflectionFraction];
+	NSNumber *coverNumber = [NSNumber numberWithInt:index];
+	[coverImages setObject:imageWithReflection forKey:coverNumber];
+	[coverImageHeights setObject:[NSNumber numberWithFloat:image.size.height] forKey:coverNumber];
+    [coverImageCaptions setObject:captionTitle forKey:coverNumber];
 	
 	// If this cover is onscreen, set its image and call layoutCover.
 	AFItemView *aCover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:index]];

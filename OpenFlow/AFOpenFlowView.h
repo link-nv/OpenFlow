@@ -68,10 +68,12 @@
 @property (nonatomic, assign) IBOutlet id <AFOpenFlowViewDelegate> viewDelegate;
 @property (nonatomic, retain) UIImage *defaultImage;
 @property (nonatomic) int numberOfImages;
+@property (nonatomic, retain) UITextView *selectedCoverCaption;
 
 - (void)setSelectedCover:(int)newSelectedCover;
 - (void)centerOnSelectedCover:(BOOL)animated;
 - (void)setImage:(UIImage *)image forIndex:(int)index;
+- (void)setImage:(UIImage *)image forIndex:(int)index captionTitle:(NSString*)captionTitle;
 
 @end
 
