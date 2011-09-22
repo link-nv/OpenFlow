@@ -41,7 +41,7 @@
 
 @implementation AFOpenFlowView (hidden)
 
-const static CGFloat kReflectionFraction = 0.85;
+const static CGFloat kReflectionFraction = 0.85f;
 
 - (SBNotifyingWindow *)appWindow
 {
@@ -91,12 +91,12 @@ const static CGFloat kReflectionFraction = 0.85;
     
     //  UIScrollViewDecelerationRateNormal = 0.998
     //  UIScrollViewDecelerationRateFast = 0.990
-    self.decelerationRate = .98;
+    self.decelerationRate = .98f;
     [super setDelegate:self];
     
 	// Set some perspective
 	CATransform3D sublayerTransform = CATransform3DIdentity;
-	sublayerTransform.m34 = -0.01;
+	sublayerTransform.m34 = -0.01f;
 	[self.layer setSublayerTransform:sublayerTransform];
     
     // Initialize Cover Caption
@@ -197,7 +197,7 @@ const static CGFloat kReflectionFraction = 0.85;
 	// See if this layer is one of our covers.
 	NSEnumerator *coverEnumerator = [onscreenCovers objectEnumerator];
 	AFItemView *aCover = nil;
-	while (aCover = (AFItemView *)[coverEnumerator nextObject])
+	while (TRUE == (bool)(aCover = (AFItemView *)[coverEnumerator nextObject]))
 		if ([[aCover.imageView layer] isEqual:targetLayer])
 			break;
 	
@@ -216,7 +216,7 @@ const static CGFloat kReflectionFraction = 0.85;
 }
 
 - (id)initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
+	if ((bool)(self = [super initWithFrame:frame]) == TRUE) {
 		[self setUpInitialState];
 	}
 	
@@ -263,7 +263,7 @@ const static CGFloat kReflectionFraction = 0.85;
     }
         
     CGFloat horizOrigin = contentOffset.x + halfScreenWidth - CAPTION_WIDTH / 2;
-    CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.height / 2.0 + CAPTION_OFFSET+10;
+    CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.height / 2.0f + CAPTION_OFFSET+10;
     selectedCoverCaption.frame = CGRectMake(horizOrigin, vertOrigin, CAPTION_WIDTH, CAPTION_HEIGHT);
     selectedCoverCaption.text = [NSString stringWithFormat:@"%@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
     // put it on top
@@ -391,32 +391,32 @@ const static CGFloat kReflectionFraction = 0.85;
 	defaultImage = [[newDefaultImage addImageReflection:kReflectionFraction] retain];
 }
 
-- (void)setImage:(UIImage *)image forIndex:(int)index {
+- (void)setImage:(UIImage *)image forIndex:(int)anIndex {
 	// Create a reflection for this image.
 	UIImage *imageWithReflection = [image addImageReflection:kReflectionFraction];
-	NSNumber *coverNumber = [NSNumber numberWithInt:index];
+	NSNumber *coverNumber = [NSNumber numberWithInt:anIndex];
 	[coverImages setObject:imageWithReflection forKey:coverNumber];
 	[coverImageHeights setObject:[NSNumber numberWithFloat:image.size.height] forKey:coverNumber];
     [coverImageCaptions setObject:coverNumber forKey:coverNumber];
 	
 	// If this cover is onscreen, set its image and call layoutCover.
-	AFItemView *aCover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:index]];
+	AFItemView *aCover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:anIndex]];
 	if (aCover) {
 		[aCover setImage:imageWithReflection originalImageHeight:image.size.height reflectionFraction:kReflectionFraction];
 		[self layoutCover:aCover selectedCover:selectedCoverView.number animated:NO];
 	}
 }
 
-- (void)setImage:(UIImage *)image forIndex:(int)index captionTitle:(NSString*)captionTitle {
+- (void)setImage:(UIImage *)image forIndex:(int)anIndex captionTitle:(NSString*)captionTitle {
 	// Create a reflection for this image.
 	UIImage *imageWithReflection = [image addImageReflection:kReflectionFraction];
-	NSNumber *coverNumber = [NSNumber numberWithInt:index];
+	NSNumber *coverNumber = [NSNumber numberWithInt:anIndex];
 	[coverImages setObject:imageWithReflection forKey:coverNumber];
 	[coverImageHeights setObject:[NSNumber numberWithFloat:image.size.height] forKey:coverNumber];
     [coverImageCaptions setObject:captionTitle forKey:coverNumber];
 	
 	// If this cover is onscreen, set its image and call layoutCover.
-	AFItemView *aCover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:index]];
+	AFItemView *aCover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:anIndex]];
 	if (aCover) {
 		[aCover setImage:imageWithReflection originalImageHeight:image.size.height reflectionFraction:kReflectionFraction];
 		[self layoutCover:aCover selectedCover:selectedCoverView.number animated:NO];
@@ -505,7 +505,7 @@ const static CGFloat kReflectionFraction = 0.85;
 		// They do not overlap at all.
 		// This does not animate--assuming it's programmatically set from view controller.
 		// Recycle all onscreen covers.
-		AFItemView *cover;
+//		AFItemView *cover;
 		for (int i = lowerVisibleCover; i <= upperVisibleCover; i++) {
 			cover = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:i]];
 			[offscreenCovers addObject:cover];

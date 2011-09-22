@@ -29,3 +29,4 @@
 - (UIImage *)addImageReflection:(CGFloat)reflectionFraction;
 
 @end
+

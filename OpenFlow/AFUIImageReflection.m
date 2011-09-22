@@ -44,7 +44,7 @@
     
     // define the start and end grayscale values (with the alpha, even though
     // our bitmap context doesn't support alpha the gradient requires it)
-    CGFloat colors[] = {0.0, 1.0, 1.0, 1.0};
+    CGFloat colors[] = {0.0f, 1.0f, 1.0f, 1.0f};
     
     // create the CGGradient and then release the gray color space
     CGGradientRef grayScaleGradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
@@ -60,7 +60,7 @@
 	CGGradientRelease(grayScaleGradient);
 	
 	// add a black fill with 60% opacity
-	CGContextSetGrayFillColor(gradientBitmapContext, 0.0, 0.60);
+	CGContextSetGrayFillColor(gradientBitmapContext, 0.0f, 0.60f);
 	CGContextFillRect(gradientBitmapContext, CGRectMake(0, 0, 1, reflectionHeight));
     
     // convert the context into a CGImageRef and release the context

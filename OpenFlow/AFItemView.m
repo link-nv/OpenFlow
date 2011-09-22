@@ -30,7 +30,7 @@
 @synthesize number, imageView, horizontalPosition, originalImageHeight, verticalPosition;
 
 - (id)initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
+	if ((bool)(self = [super initWithFrame:frame]) == TRUE) {
 		self.opaque = YES;
 		self.backgroundColor = nil;
 		verticalPosition = 0;

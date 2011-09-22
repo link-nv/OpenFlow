@@ -28,12 +28,12 @@
 
 #import "AFItemView.h"
 
-#import "PPScrollView.h"
+//#import "PPScrollView.h"
 
 @protocol AFOpenFlowViewDataSource;
 @protocol AFOpenFlowViewDelegate;
 
-@interface AFOpenFlowView : PPScrollView <UIScrollViewDelegate> {
+@interface AFOpenFlowView : UIScrollView <UIScrollViewDelegate> {
 	id <AFOpenFlowViewDataSource>	dataSource;
 	id <AFOpenFlowViewDelegate>	    viewDelegate;
 
