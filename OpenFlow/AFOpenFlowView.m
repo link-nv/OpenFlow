@@ -153,7 +153,9 @@ const static CGFloat kReflectionFraction = 0.85f;
     
 	newPosition.x = halfScreenWidth + aCover.horizontalPosition;
     //Bottom of the cover should always in the same place
-	newPosition.y = 265;
+//	newPosition.y = 265;
+    newPosition.y = [self.viewDelegate getCoverLocationY];
+    
     if (coverNumber < selectedIndex) {
 		newPosition.x -= [AFOpenFlowGeometry centerCoverOffset];
 		newTransform = leftTransform;
@@ -245,13 +247,14 @@ const static CGFloat kReflectionFraction = 0.85f;
     //    NSLog(@"[%@ %s]", self, _cmd);
     halfScreenWidth = self.bounds.size.width / 2;
     halfScreenHeight = self.bounds.size.height / 2;
-    
+        
     int lowerBound = MAX(-1, selectedCoverView.number - COVER_BUFFER);
     int upperBound = MIN(self.numberOfImages - 1, selectedCoverView.number + COVER_BUFFER);
     
     [self layoutCovers:selectedCoverView.number fromCover:lowerBound toCover:upperBound];
     [self setNumberOfImages:numberOfImages]; // resets view bounds and stuff
     CGPoint contentOffset = [self contentOffset];
+    
     int targetCover = (int) roundf(contentOffset.x / [AFOpenFlowGeometry coverSpacing]);
     if (targetCover != selectedCoverView.number) {
         if (targetCover < 0)
@@ -264,6 +267,7 @@ const static CGFloat kReflectionFraction = 0.85f;
         
     CGFloat horizOrigin = contentOffset.x + halfScreenWidth - CAPTION_WIDTH / 2;
     CGFloat vertOrigin = selectedCoverView.frame.origin.y + selectedCoverView.frame.size.height / 2.0f + CAPTION_OFFSET+10;
+        
     selectedCoverCaption.frame = CGRectMake(horizOrigin, vertOrigin, CAPTION_WIDTH, CAPTION_HEIGHT);
     selectedCoverCaption.text = [NSString stringWithFormat:@"%@", [coverImageCaptions objectForKey:[NSNumber numberWithInt:targetCover]]];
     // put it on top

@@ -81,6 +81,7 @@
 @optional
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
 - (void)openFlowView:(AFOpenFlowView *)openFlowView didTapItemView:(AFItemView *)itemView;
+- (CGFloat)getCoverLocationY;
 @end
 
 @protocol AFOpenFlowViewDataSource <NSObject>
