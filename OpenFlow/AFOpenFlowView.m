@@ -443,8 +443,8 @@ const static CGFloat kReflectionFraction = 0.85f;
 		CALayer *targetLayer = (CALayer *)[self.layer hitTest:targetPoint];
 		AFItemView *targetCover = [self findCoverOnscreen:targetLayer];
         
-        if ([self.viewDelegate respondsToSelector:@selector(openFlowView:didTapItemView:)]) {
-            [self.viewDelegate openFlowView:self didTapItemView:targetCover];
+        if ([self.viewDelegate respondsToSelector:@selector(openFlowView:didTapItemView:tapCount:)]) {
+            [self.viewDelegate openFlowView:self didTapItemView:targetCover tapCount:[touch tapCount]];
         }
         
 		if (targetCover && (targetCover.number != selectedCoverView.number))
@@ -459,8 +459,11 @@ const static CGFloat kReflectionFraction = 0.85f;
         CGPoint targetPoint = [[touches anyObject] locationInView:[self appWindow]];
         CALayer *targetLayer = (CALayer *)[self.layer hitTest:targetPoint];
         AFItemView *targetCover = [self findCoverOnscreen:targetLayer];
-        NSLog(@"Double tapped %@", targetCover);
-    }
+
+        if ([self.viewDelegate respondsToSelector:@selector(openFlowView:didTapItemView:tapCount:)]) {
+            [self.viewDelegate openFlowView:self didTapItemView:targetCover tapCount:[touch tapCount]];
+        }
+    }   
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
